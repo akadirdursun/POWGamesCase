@@ -18,8 +18,7 @@ namespace CubeMatch.LevelDesign.SpawnSystem
 
         private void SpawnCubes()
         {
-            List<Vector3> spawnPositions = new List<Vector3>();
-
+            List<Vector3> spawnPositions = new List<Vector3>();            
             for (int y = 0; y < levelInfo.Limits.y; y++)
             {
                 for (int x = 0; x < levelInfo.Limits.x; x++)
