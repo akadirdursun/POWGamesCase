@@ -10,8 +10,17 @@ namespace CubeMatch.MatchArea
     {
         [SerializeField] private List<MatchAreaSlot> slots = new List<MatchAreaSlot>();
 
-        [SerializeField] private float moveTime = 0.1f;
         private Dictionary<CubeInfo, List<Cube>> slotTypes = new Dictionary<CubeInfo, List<Cube>>();
+
+        private MatchChecker matchChecker;
+
+        #region PROPERTIES
+        public Dictionary<CubeInfo, List<Cube>> SlotTypes { get => slotTypes; }
+        #endregion
+
+        #region EVENTS
+        public event Action<CubeInfo> onNewCubeAdded;
+        #endregion
 
         #region EVENT LISTENERS
         private void OnCubePicked(Cube cube)
@@ -34,25 +43,47 @@ namespace CubeMatch.MatchArea
                 return;
             }
 
-            slot.AddCube(cube);
+            //slot.AddCube(cube, () => { MatchCheck(cube.CubeInfo); });
+            slot.AddCube(cube, () => { onNewCubeAdded?.Invoke(cube.CubeInfo); });
+        }
 
-            cube.transform.DOLocalMove(Vector3.zero, moveTime).OnComplete(() =>
+        private void MoveSlotsBackwards(int firstIndex, int lastIndex)
+        {
+            int currentEmptySlot = firstIndex;
+            for (int i = lastIndex + 1; i < slots.Count; i++)
             {
-                MatchCheck(cube.CubeInfo);
-            });
+                if (!slots[i].HaveCube()) break;
 
+                Cube cube = slots[i].RemovePickedCube();
+
+                slots[currentEmptySlot].AddCube(cube);
+                cube.MyMatchAreaIndex = currentEmptySlot;
+                //cube.transform.DOLocalMove(Vector3.zero, moveTime);
+                currentEmptySlot++;
+                if (currentEmptySlot > lastIndex)
+                {
+                    break;
+                }
+            }
         }
         #endregion
 
         #region MonoBehaviour METHODS
+        private void Awake()
+        {
+            matchChecker = GetComponent<MatchChecker>();
+        }
+
         private void OnEnable()
         {
             StaticEvents.onCubePicked += OnCubePicked;
+            matchChecker.onMatchCompleted += MoveSlotsBackwards;
         }
 
         private void OnDisable()
         {
             StaticEvents.onCubePicked -= OnCubePicked;
+            matchChecker.onMatchCompleted -= MoveSlotsBackwards;
         }
         #endregion
 
@@ -72,10 +103,10 @@ namespace CubeMatch.MatchArea
 
         private MatchAreaSlot GetTargetSlot(Cube cube)
         {
-            int targetSlotIndex = slotTypes[cube.CubeInfo].LastItem().MyMatchAreaIndex + 1;            
+            int targetSlotIndex = slotTypes[cube.CubeInfo].LastItem().MyMatchAreaIndex + 1;
             MoveSlotsOnwards(targetSlotIndex);
             slots[targetSlotIndex].AddCube(cube);
-            cube.transform.DOLocalMove(Vector3.zero, moveTime);
+            //cube.transform.DOLocalMove(Vector3.zero, moveTime);
 
             cube.MyMatchAreaIndex = targetSlotIndex;
 
@@ -92,55 +123,8 @@ namespace CubeMatch.MatchArea
 
                 slots[i + 1].AddCube(cubeToMove);
                 cubeToMove.MyMatchAreaIndex = i + 1;
-                cubeToMove.transform.DOLocalMove(Vector3.zero, moveTime);
+                //cubeToMove.transform.DOLocalMove(Vector3.zero, moveTime);
             }
-        }
-
-        private void MoveSlotsBackwards(int firstIndex, int lastIndex)
-        {
-            int currentEmptySlot = firstIndex;
-            for (int i = lastIndex + 1; i < slots.Count; i++)
-            {
-                if (!slots[i].HaveCube()) break;
-
-                Cube cube = slots[i].RemovePickedCube();
-
-                slots[currentEmptySlot].AddCube(cube);
-                cube.MyMatchAreaIndex = currentEmptySlot;
-                cube.transform.DOLocalMove(Vector3.zero, moveTime);
-                currentEmptySlot++;
-                if (currentEmptySlot > lastIndex)
-                {
-                    break;
-                }
-            }
-        }
-
-        private void MatchCheck(CubeInfo cubeInfo)
-        {
-            if (slotTypes[cubeInfo].Count != 3) return;
-
-            List<Cube> list = slotTypes[cubeInfo];
-            slotTypes.Remove(cubeInfo);
-
-            Vector3 targetPos = Vector3.zero;
-            for (int i = 0; i < list.Count; i++)
-            {
-                targetPos += list[i].transform.position;
-            }
-
-            targetPos /= 3;
-
-            list[0].transform.DOMove(targetPos, moveTime);
-            list[2].transform.DOMove(targetPos, moveTime).OnComplete(() =>
-            {
-                MoveSlotsBackwards(list[0].MyMatchAreaIndex, list[2].MyMatchAreaIndex);
-                for (int i = 0; i < list.Count; i++)
-                {
-                    Destroy(list[i].gameObject);
-                }
-
-            });
         }
     }
 }

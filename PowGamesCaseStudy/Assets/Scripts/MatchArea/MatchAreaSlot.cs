@@ -10,12 +10,13 @@ namespace CubeMatch.MatchArea
 
         //public Cube PickedCube { get => pickedCube; set => pickedCube = value; }
 
-        public void AddCube(Cube cube)
+        public void AddCube(Cube cube, System.Action callback = null)
         {
             pickedCube = cube;
             pickedCube.transform.SetParent(transform, true);
 
             pickedCube.transform.eulerAngles = Vector3.zero;
+            pickedCube.MoveTo(Vector3.zero, true, callback);
         }
 
         public Cube RemovePickedCube()

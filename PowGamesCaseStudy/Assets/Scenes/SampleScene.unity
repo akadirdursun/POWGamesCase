@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 288513740}
   - component: {fileID: 288513739}
   - component: {fileID: 288513742}
+  - component: {fileID: 288513743}
   m_Layer: 0
   m_Name: MatchAreaCanvas
   m_TagString: Untagged
@@ -245,6 +246,18 @@ MonoBehaviour:
   - {fileID: 1479304031}
   - {fileID: 571837601}
   - {fileID: 332449589}
+--- !u!114 &288513743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288513737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e9d7605a444d81489f87bbe3a209ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &332449587
 GameObject:
   m_ObjectHideFlags: 0
