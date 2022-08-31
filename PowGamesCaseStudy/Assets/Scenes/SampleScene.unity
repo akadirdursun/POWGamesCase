@@ -123,6 +123,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &361863247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 361863248}
+  - component: {fileID: 361863249}
+  m_Layer: 0
+  m_Name: -----CubeSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &361863248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361863247}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &361863249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361863247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af72af33d3cd92148904d3b4c8136688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubePrefab: {fileID: 1413567054739732366, guid: e2ee8ffd1e18aa647a0029c42bfc14ec, type: 3}
+  levelInfo: {fileID: 11400000, guid: 40719237b459a964e86f7eae4f3cc386, type: 2}
+  cubeInfos:
+  - {fileID: 11400000, guid: 75ff8c86d7e5c6d47947175181d3669e, type: 2}
+  - {fileID: 11400000, guid: 7fc5899db2a05184c927df633eb73de5, type: 2}
+  - {fileID: 11400000, guid: bedcfe3c7d914d84fa55a3dc4cd6c2bf, type: 2}
+  - {fileID: 11400000, guid: 0c31012f4677ed74aa9495e24157533e, type: 2}
+  - {fileID: 11400000, guid: 096f6af41e3b84642831fd22f8207d6f, type: 2}
+  - {fileID: 11400000, guid: b0ef2e790253503408223d64e28ff5ad, type: 2}
+  - {fileID: 11400000, guid: fe074ed38ac980a45915cf51520cb60f, type: 2}
+  - {fileID: 11400000, guid: 75a4f47c3293b9a4281970687abb0a80, type: 2}
+  - {fileID: 11400000, guid: 85f4ae8fb8756454c90cfb2f4a4ec8dd, type: 2}
+  - {fileID: 11400000, guid: 6034537464cb08f46859d6d3bfde8bac, type: 2}
+  - {fileID: 11400000, guid: 8847842613ca2f6409285030212fc8e7, type: 2}
+  - {fileID: 11400000, guid: 41435365c9e95a14da8c613e4036b969, type: 2}
+  - {fileID: 11400000, guid: 0d759f21e665df748b7528c0b4574abd, type: 2}
+  - {fileID: 11400000, guid: 346b43034f7c1d041a5bce14d19f57f1, type: 2}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
