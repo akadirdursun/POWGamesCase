@@ -105,8 +105,6 @@ namespace CubeMatch.MatchArea
         {
             int targetSlotIndex = slotTypes[cube.CubeInfo].LastItem().MyMatchAreaIndex + 1;
             MoveSlotsOnwards(targetSlotIndex);
-            slots[targetSlotIndex].AddCube(cube);
-            //cube.transform.DOLocalMove(Vector3.zero, moveTime);
 
             cube.MyMatchAreaIndex = targetSlotIndex;
 
