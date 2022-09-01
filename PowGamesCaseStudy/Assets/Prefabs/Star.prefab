@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4928035537616565894}
   - component: {fileID: 4928035537616565891}
   - component: {fileID: 4928035537616565888}
-  - component: {fileID: 4928035537616565889}
+  - component: {fileID: 5263333761265718848}
   m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4928035537616565889
+--- !u!114 &5263333761265718848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

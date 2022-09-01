@@ -27,19 +27,25 @@ namespace CubeMatch.StarSystem
         }
 
         public int TotalStar { get => totalStar; }
+        public Star StarPrefab { get => starPrefab; }
         #endregion
 
+        #region ScriptableObject METHODS
+        private void OnEnable()
+        {
+            totalStar = 0;
+        }
+        #endregion
         #region EVENTS    
-        public event Action<Star> onStarParticleSpawned;
+        public event Action<Vector3> onStarParticleSpawned;
         public event Action onStarComboChanged;
         #endregion
 
         public void SpawnStarPartilce(Vector3 position)
         {
-            Star star = Instantiate(starPrefab, position, Quaternion.identity);
             totalStar += comboStar;
             ComboStar++;
-            onStarParticleSpawned?.Invoke(star);
+            onStarParticleSpawned?.Invoke(position);
         }
     }
 }

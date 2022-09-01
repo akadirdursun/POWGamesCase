@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a92494bedeb2845b897dddbc9d2aea, type: 3}
   m_Name: StarSystemInfo
   m_EditorClassIdentifier: 
-  starPrefab: {fileID: 4928035537616565889, guid: 46df9db6d1490584083e031a50593481, type: 3}
+  starPrefab: {fileID: 5263333761265718848, guid: 46df9db6d1490584083e031a50593481, type: 3}

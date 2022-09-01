@@ -24,12 +24,11 @@ namespace CubeMatch.StarSystem
         #endregion
 
         #region EVENT LISTENERS
-        private void OnStarCreated(Star star)
+        private void OnStarCreated(Vector3 position)
         {
-            star.transform.SetParent(transform);
-            star.transform.DOLocalMove(Vector3.zero, 1f).OnComplete(() =>
+            Star star = Instantiate(starInfo.StarPrefab, position, Quaternion.identity, transform);
+            star.MovementSequence(() =>
             {
-                Destroy(star.gameObject);
                 starText.text = starInfo.TotalStar.ToString();
             });
         }

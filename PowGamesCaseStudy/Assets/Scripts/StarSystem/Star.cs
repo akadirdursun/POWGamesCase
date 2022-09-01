@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class Star : MonoBehaviour
+namespace CubeMatch.StarSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Star : MonoBehaviour
     {
-        
-    }
+        public void MovementSequence(System.Action callback)
+        {
+            Sequence sequence = DOTween.Sequence();
+            Tween tween = transform.DOPunchScale(Vector3.one, 0.2f);
+            sequence.Append(tween);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            tween = transform.DOLocalMove(Vector3.zero, 0.5f).OnComplete(() =>
+            {
+                Destroy(gameObject);
+                callback?.Invoke();
+            });
+            sequence.Append(tween);
+        }
     }
 }
