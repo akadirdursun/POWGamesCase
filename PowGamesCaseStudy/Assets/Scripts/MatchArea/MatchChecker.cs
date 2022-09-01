@@ -35,7 +35,7 @@ namespace CubeMatch.MatchArea
 
         private void MatchCheck(CubeInfo cubeInfo)
         {
-            if (matchArea.SlotTypes[cubeInfo].Count != 3) return;
+            if (!matchArea.SlotTypes.ContainsKey(cubeInfo) || matchArea.SlotTypes[cubeInfo].Count != 3) return;
 
             bool isMatchCompleted = false;
 
