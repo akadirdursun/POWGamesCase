@@ -8,16 +8,44 @@ namespace CubeMatch
 
         private CubeInfo cubeInfo;
         private int myMatchAreaIndex;
+        private bool isCollected;
 
         #region Properties
         public CubeInfo CubeInfo { get => cubeInfo; }
-        public int MyMatchAreaIndex { get => myMatchAreaIndex; set => myMatchAreaIndex = value; }
+        public int MyMatchAreaIndex
+        {
+            get => myMatchAreaIndex;
+            set
+            {
+                myMatchAreaIndex = value;
+                isCollected = true;
+            }
+        }
         #endregion
 
         #region MonoBehaviour METHODS
         private void Awake()
         {
             myMovementScript = GetComponent<CubeMovement>();
+        }
+
+        private void OnEnable()
+        {
+            StaticEvents.onCubeHinted += OnCubeHinted;
+        }
+
+        private void OnDisable()
+        {
+            StaticEvents.onCubeHinted -= OnCubeHinted;
+        }
+        #endregion
+
+        #region EVENT LISTENERS
+        private void OnCubeHinted(CubeInfo info)
+        {
+            if (isCollected || cubeInfo != info) return;
+
+            StaticEvents.onCubePicked?.Invoke(this);
         }
         #endregion
 

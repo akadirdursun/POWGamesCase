@@ -44,5 +44,11 @@ namespace CubeMatch
 
             onNewCubePicked?.Invoke(pickedCube.CubeInfo);
         }
+
+        public void CubesMatched(CubeInfo cubeInfo)
+        {
+            pickedCubes.Remove(cubeInfo);
+            cubeTypes.Remove(cubeInfo);
+        }
     }
 }

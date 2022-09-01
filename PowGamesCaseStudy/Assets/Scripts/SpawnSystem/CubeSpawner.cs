@@ -33,6 +33,7 @@ namespace CubeMatch.LevelDesign.SpawnSystem
 
             for (int i = 0; i < levelInfo.TotalCubeTypes; i++)
             {
+                matchTypeInfo.CubeTypes.Add(cubeInfos[i]);
                 for (int j = 0; j < 3; j++)
                 {
                     int rs = Random.Range(0, spawnPositions.Count);

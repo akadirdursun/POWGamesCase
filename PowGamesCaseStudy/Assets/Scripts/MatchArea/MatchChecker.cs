@@ -32,7 +32,7 @@ namespace CubeMatch.MatchArea
             bool isMatchCompleted = false;
 
             List<Cube> list = cubeMatchInfo.PickedCubes[cubeInfo];
-            cubeMatchInfo.PickedCubes.Remove(cubeInfo);
+            cubeMatchInfo.CubesMatched(cubeInfo);
 
             Vector3 targetPos = Vector3.zero;
             for (int i = 0; i < list.Count; i++)
