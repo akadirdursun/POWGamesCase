@@ -6,7 +6,7 @@ namespace CubeMatch.HintSystem
 {
     public class HintSystem : MonoBehaviour
     {
-        [SerializeField] private CubeMatchTypeInfo cubeMatchInfo;
+        [SerializeField] private CubeMatchTypeInfo cubeMatchInfo;        
 
         #region EVENT LISTENERS
         public void OnHintButtonClicked()

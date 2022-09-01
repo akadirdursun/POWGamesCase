@@ -18,18 +18,18 @@ namespace CubeMatch
             {
                 moveTween = transform.DOLocalMove(targetPos, moveTime).OnKill(() =>
                   {
-                      callback?.Invoke();
                       transform.localPosition = targetPos;
                       moveTween = null;
+                      callback?.Invoke();
                   });
                 return;
             }
 
             moveTween = transform.DOMove(targetPos, moveTime).OnKill(() =>
                {
-                   callback?.Invoke();
                    transform.position = targetPos;
                    moveTween = null;
+                   callback?.Invoke();
                });
         }
     }
