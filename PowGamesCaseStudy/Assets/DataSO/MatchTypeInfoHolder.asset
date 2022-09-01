@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecbbedd246237fd4e9ecda7d5c78a7bc, type: 3}
-  m_Name: SampleLevel
+  m_Script: {fileID: 11500000, guid: e9c42170204b7df4ba853f2885315b24, type: 3}
+  m_Name: MatchTypeInfoHolder
   m_EditorClassIdentifier: 
-  limits: {x: 2, y: 2, z: 3}
-  totalCubeTypes: 3

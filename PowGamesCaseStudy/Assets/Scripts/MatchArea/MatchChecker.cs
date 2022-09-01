@@ -8,39 +8,31 @@ namespace CubeMatch.MatchArea
     public class MatchChecker : MonoBehaviour
     {
         [SerializeField] private StarSystemInfo starInfo;
-        private CubeMatchArea matchArea;
+        [SerializeField] private CubeMatchTypeInfo cubeMatchInfo;
 
         #region MonoBehaviour METHODS
-        private void Awake()
-        {
-            matchArea = GetComponent<CubeMatchArea>();
-        }
 
         private void OnEnable()
         {
-            matchArea.onNewCubeAdded += MatchCheck;
+            cubeMatchInfo.onNewCubePicked += MatchCheck;
         }
 
         private void OnDisable()
         {
-            matchArea.onNewCubeAdded -= MatchCheck;
+            cubeMatchInfo.onNewCubePicked -= MatchCheck;
         }
-        #endregion
-
-        #region EVENTS
-        public event Action<int, int> onMatchCompleted;
         #endregion
 
         #region EVENT LISTENERS
 
         private void MatchCheck(CubeInfo cubeInfo)
         {
-            if (!matchArea.SlotTypes.ContainsKey(cubeInfo) || matchArea.SlotTypes[cubeInfo].Count != 3) return;
+            if (!cubeMatchInfo.PickedCubes.ContainsKey(cubeInfo) || cubeMatchInfo.PickedCubes[cubeInfo].Count != 3) return;
 
             bool isMatchCompleted = false;
 
-            List<Cube> list = matchArea.SlotTypes[cubeInfo];
-            matchArea.SlotTypes.Remove(cubeInfo);
+            List<Cube> list = cubeMatchInfo.PickedCubes[cubeInfo];
+            cubeMatchInfo.PickedCubes.Remove(cubeInfo);
 
             Vector3 targetPos = Vector3.zero;
             for (int i = 0; i < list.Count; i++)
@@ -59,14 +51,14 @@ namespace CubeMatch.MatchArea
                 cube.MoveTo(targetPos, false,
                     () =>
                     {
-                        Destroy(cube.gameObject);
-
                         if (!isMatchCompleted)
                         {
                             isMatchCompleted = true;
-                            onMatchCompleted?.Invoke(firstIndex, lastIndex);
+                            cubeMatchInfo.onMatchCompleted?.Invoke(firstIndex, lastIndex);
                             starInfo.SpawnStarPartilce(targetPos);
                         }
+
+                        Destroy(cube.gameObject);
                     });
             }
         }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,17 +7,19 @@ namespace CubeMatch.LevelDesign.SpawnSystem
     {
         [SerializeField] private Cube cubePrefab;
         [SerializeField] private LevelInfo levelInfo;
+        [SerializeField] private CubeMatchTypeInfo matchTypeInfo;
         [Space]
         [SerializeField] private List<CubeInfo> cubeInfos = new List<CubeInfo>();
 
         private void Start()
         {
+            matchTypeInfo.Initialize();
             SpawnCubes();
         }
 
         private void SpawnCubes()
         {
-            List<Vector3> spawnPositions = new List<Vector3>();            
+            List<Vector3> spawnPositions = new List<Vector3>();
             for (int y = 0; y < levelInfo.Limits.y; y++)
             {
                 for (int x = 0; x < levelInfo.Limits.x; x++)

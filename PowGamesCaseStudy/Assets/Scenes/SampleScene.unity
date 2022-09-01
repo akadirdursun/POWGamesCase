@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 288513742}
   - component: {fileID: 288513743}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: MatchAreaCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -437,6 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22ec6966d8055346b54b7531a063cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeMatchInfo: {fileID: 11400000, guid: 05086904059c9214aa09dbaa3c918c49, type: 2}
   slots:
   - {fileID: 1729829359}
   - {fileID: 1544994747}
@@ -458,6 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starInfo: {fileID: 11400000, guid: 0fcb126630b78fc45a654298ad3c0ea8, type: 2}
+  cubeMatchInfo: {fileID: 11400000, guid: 05086904059c9214aa09dbaa3c918c49, type: 2}
 --- !u!1 &308285091
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,6 +700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 1413567054739732366, guid: e2ee8ffd1e18aa647a0029c42bfc14ec, type: 3}
   levelInfo: {fileID: 11400000, guid: 40719237b459a964e86f7eae4f3cc386, type: 2}
+  matchTypeInfo: {fileID: 11400000, guid: 05086904059c9214aa09dbaa3c918c49, type: 2}
   cubeInfos:
   - {fileID: 11400000, guid: 75ff8c86d7e5c6d47947175181d3669e, type: 2}
   - {fileID: 11400000, guid: 7fc5899db2a05184c927df633eb73de5, type: 2}
