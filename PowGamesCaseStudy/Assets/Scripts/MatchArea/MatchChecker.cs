@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using CubeMatch.StarSystem;
 
 namespace CubeMatch.MatchArea
 {
     public class MatchChecker : MonoBehaviour
     {
+        [SerializeField] private StarSystemInfo starInfo;
         private CubeMatchArea matchArea;
 
         #region MonoBehaviour METHODS
@@ -61,8 +63,9 @@ namespace CubeMatch.MatchArea
 
                         if (!isMatchCompleted)
                         {
-                            onMatchCompleted?.Invoke(firstIndex, lastIndex);
                             isMatchCompleted = true;
+                            onMatchCompleted?.Invoke(firstIndex, lastIndex);
+                            starInfo.SpawnStarPartilce(targetPos);
                         }
                     });
             }
