@@ -29,8 +29,6 @@ namespace CubeMatch.MatchArea
         {
             if (!cubeMatchInfo.PickedCubes.ContainsKey(cubeInfo) || cubeMatchInfo.PickedCubes[cubeInfo].Count != 3) return;
 
-            bool isMatchCompleted = false;
-
             List<Cube> list = cubeMatchInfo.PickedCubes[cubeInfo];
             cubeMatchInfo.CubesMatched(cubeInfo);
 
@@ -51,14 +49,14 @@ namespace CubeMatch.MatchArea
                 cube.MoveTo(targetPos, false,
                     () =>
                     {
-                        if (!isMatchCompleted)
-                        {
-                            isMatchCompleted = true;
+                        if (i == list.Count - 1)
+                        {                            
                             cubeMatchInfo.onMatchCompleted?.Invoke(firstIndex, lastIndex);
                             starInfo.SpawnStarPartilce(targetPos);
                         }
 
                         Destroy(cube.gameObject);
+
                     });
             }
         }

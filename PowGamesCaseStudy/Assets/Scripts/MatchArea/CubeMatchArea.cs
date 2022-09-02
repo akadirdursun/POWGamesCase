@@ -39,6 +39,7 @@ namespace CubeMatch.MatchArea
 
         private void MoveSlotsBackwards(int firstIndex, int lastIndex)
         {
+            Debug.Log("deneme");
             int currentEmptySlot = firstIndex;
             for (int i = lastIndex + 1; i < slots.Count; i++)
             {

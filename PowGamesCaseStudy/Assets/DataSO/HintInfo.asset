@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5712989baa45f804fb39eb3819e6827b, type: 3}
   m_Name: HintInfo
   m_EditorClassIdentifier: 
-  hintCount: 2
+  hintCount: 4
