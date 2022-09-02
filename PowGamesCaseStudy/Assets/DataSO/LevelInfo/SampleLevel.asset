@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecbbedd246237fd4e9ecda7d5c78a7bc, type: 3}
   m_Name: SampleLevel
   m_EditorClassIdentifier: 
-  limits: {x: 2, y: 2, z: 3}
-  totalCubeTypes: 3
+  limits: {x: 2, y: 3, z: 3}
+  totalCubeTypes: 4

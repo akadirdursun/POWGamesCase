@@ -68,7 +68,7 @@ namespace CubeMatch.MatchArea
             if (slots.LastItem().PickedCube == null) return;
 
             //TODO: Level Failed
-            StaticEvents.levelFailed?.Invoke();
+            StaticEvents.onLevelFailed?.Invoke();
         }
         #endregion
 
