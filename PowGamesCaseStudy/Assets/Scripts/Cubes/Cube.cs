@@ -19,10 +19,12 @@ namespace CubeMatch
             get => myMatchAreaIndex;
             set
             {
-                myMatchAreaIndex = value;
                 isCollected = true;
+                myMatchAreaIndex = value;
             }
         }
+
+        public bool IsCollected { get => isCollected; }
         #endregion
 
         #region MonoBehaviour METHODS

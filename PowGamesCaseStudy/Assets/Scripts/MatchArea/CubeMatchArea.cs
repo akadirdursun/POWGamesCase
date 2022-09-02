@@ -15,6 +15,8 @@ namespace CubeMatch.MatchArea
         #region EVENT LISTENERS
         private void OnCubePicked(Cube cube)
         {
+            if (cube.IsCollected) return;
+
             MatchAreaSlot slot;
             if (cubeMatchInfo.PickedCubes.ContainsKey(cube.CubeInfo))
             {
@@ -85,6 +87,8 @@ namespace CubeMatch.MatchArea
 
         private MatchAreaSlot GetTargetSlot(Cube cube)
         {
+            if (slots.LastItem().PickedCube != null) return null;
+
             int targetSlotIndex = cubeMatchInfo.PickedCubes[cube.CubeInfo].LastItem().MyMatchAreaIndex + 1;
             MoveSlotsOnwards(targetSlotIndex);
 

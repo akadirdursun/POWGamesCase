@@ -8,7 +8,7 @@ namespace CubeMatch.MatchArea
     {
         private Cube pickedCube;
 
-        //public Cube PickedCube { get => pickedCube; set => pickedCube = value; }
+        public Cube PickedCube { get => pickedCube; }
 
         public void AddCube(Cube cube, System.Action callback = null)
         {

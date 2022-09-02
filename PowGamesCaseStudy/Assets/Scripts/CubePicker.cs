@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace CubeMatch
 {
@@ -11,13 +10,16 @@ namespace CubeMatch
         #region MonoBehaviour METHODS
         private void Update()
         {
-            if (Input.GetMouseButton(0))
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                CubeCheck();
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                PickCube();
+                if (Input.GetMouseButton(0))
+                {
+                    CubeCheck();
+                }
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    PickCube();
+                }
             }
         }
         #endregion
