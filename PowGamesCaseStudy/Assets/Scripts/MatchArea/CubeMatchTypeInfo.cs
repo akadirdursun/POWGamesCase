@@ -17,6 +17,7 @@ namespace CubeMatch
 
         #region EVENTS
         public event Action<CubeInfo> onNewCubePicked;
+        public event Action<bool> onMatchChecked;
         public Action<int, int> onMatchCompleted;
         #endregion
 
@@ -54,6 +55,14 @@ namespace CubeMatch
             {
                 //TODO: Level Completed
             }
+        }
+
+        public bool IsMatchPossible(CubeInfo info)
+        {
+            bool value = (PickedCubes.ContainsKey(info) && PickedCubes[info].Count == 3);
+
+            onMatchChecked?.Invoke(value);
+            return value;
         }
     }
 }

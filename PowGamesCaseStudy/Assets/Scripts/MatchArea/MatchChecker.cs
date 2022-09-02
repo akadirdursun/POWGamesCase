@@ -11,7 +11,6 @@ namespace CubeMatch.MatchArea
         [SerializeField] private CubeMatchTypeInfo cubeMatchInfo;
 
         #region MonoBehaviour METHODS
-
         private void OnEnable()
         {
             cubeMatchInfo.onNewCubePicked += MatchCheck;
@@ -24,10 +23,9 @@ namespace CubeMatch.MatchArea
         #endregion
 
         #region EVENT LISTENERS
-
         private void MatchCheck(CubeInfo cubeInfo)
         {
-            if (!cubeMatchInfo.PickedCubes.ContainsKey(cubeInfo) || cubeMatchInfo.PickedCubes[cubeInfo].Count != 3) return;
+            if (!cubeMatchInfo.IsMatchPossible(cubeInfo)) return;
 
             List<Cube> list = cubeMatchInfo.PickedCubes[cubeInfo];
             cubeMatchInfo.CubesMatched(cubeInfo);
@@ -45,22 +43,31 @@ namespace CubeMatch.MatchArea
 
             for (int i = 0; i < list.Count; i++)
             {
+
                 Cube cube = list[i];
-                cube.MoveTo(targetPos, false,
-                    () =>
+                System.Action action;
+
+                if (i == 0)
+                {
+                    action = () =>
                     {
-                        if (i == list.Count - 1)
-                        {                            
-                            cubeMatchInfo.onMatchCompleted?.Invoke(firstIndex, lastIndex);
-                            starInfo.SpawnStarPartilce(targetPos);
-                        }
+                        cubeMatchInfo.onMatchCompleted?.Invoke(firstIndex, lastIndex);
+                        starInfo.SpawnStarPartilce(targetPos);
 
                         Destroy(cube.gameObject);
+                    };
+                }
+                else
+                {
+                    action = () =>
+                    {
+                        Destroy(cube.gameObject);
+                    };
+                }
 
-                    });
+                cube.MoveTo(targetPos, false, action);
             }
         }
-
         #endregion
     }
 }

@@ -12,6 +12,22 @@ namespace CubeMatch.MatchArea
         [Space]
         [SerializeField] private List<MatchAreaSlot> slots = new List<MatchAreaSlot>();
 
+        #region MonoBehaviour METHODS
+        private void OnEnable()
+        {
+            StaticEvents.onCubePicked += OnCubePicked;
+            cubeMatchInfo.onMatchChecked += OnMatchChecked;
+            cubeMatchInfo.onMatchCompleted += MoveSlotsBackwards;
+        }
+
+        private void OnDisable()
+        {
+            StaticEvents.onCubePicked -= OnCubePicked;
+            cubeMatchInfo.onMatchChecked -= OnMatchChecked;
+            cubeMatchInfo.onMatchCompleted -= MoveSlotsBackwards;
+        }
+        #endregion
+
         #region EVENT LISTENERS
         private void OnCubePicked(Cube cube)
         {
@@ -27,19 +43,11 @@ namespace CubeMatch.MatchArea
                 slot = GetEmptySlot(cube);
             }
 
-
-            if (slot == null)
-            {
-                //TODO: GameOver
-                return;
-            }
-
             slot.AddCube(cube, () => { cubeMatchInfo.CubePicked(cube); });
         }
 
         private void MoveSlotsBackwards(int firstIndex, int lastIndex)
         {
-            Debug.Log("deneme");
             int currentEmptySlot = firstIndex;
             for (int i = lastIndex + 1; i < slots.Count; i++)
             {
@@ -52,19 +60,15 @@ namespace CubeMatch.MatchArea
                 currentEmptySlot++;
             }
         }
-        #endregion
 
-        #region MonoBehaviour METHODS
-        private void OnEnable()
+        private void OnMatchChecked(bool value)
         {
-            StaticEvents.onCubePicked += OnCubePicked;
-            cubeMatchInfo.onMatchCompleted += MoveSlotsBackwards;
-        }
+            if (value) return;
 
-        private void OnDisable()
-        {
-            StaticEvents.onCubePicked -= OnCubePicked;
-            cubeMatchInfo.onMatchCompleted -= MoveSlotsBackwards;
+            if (slots.LastItem().PickedCube == null) return;
+
+            //TODO: Level Failed
+            StaticEvents.levelFailed?.Invoke();
         }
         #endregion
 
