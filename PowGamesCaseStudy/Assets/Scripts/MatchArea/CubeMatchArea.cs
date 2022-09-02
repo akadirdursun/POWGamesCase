@@ -49,10 +49,6 @@ namespace CubeMatch.MatchArea
                 slots[currentEmptySlot].AddCube(cube);
                 cube.MyMatchAreaIndex = currentEmptySlot;
                 currentEmptySlot++;
-                if (currentEmptySlot > lastIndex)
-                {
-                    break;
-                }
             }
         }
         #endregion
