@@ -49,6 +49,11 @@ namespace CubeMatch
         {
             pickedCubes.Remove(cubeInfo);
             cubeTypes.Remove(cubeInfo);
+
+            if (cubeTypes.Count == 0)
+            {
+                //TODO: Level Completed
+            }
         }
     }
 }

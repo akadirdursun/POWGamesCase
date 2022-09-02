@@ -1,9 +1,11 @@
 using UnityEngine;
+using CubeMatch.HintSystem;
 
 namespace CubeMatch
 {
     public class Cube : MonoBehaviour
     {
+        [SerializeField] private HintInfo hintInfo;
         private CubeMovement myMovementScript;
 
         private CubeInfo cubeInfo;
@@ -31,12 +33,12 @@ namespace CubeMatch
 
         private void OnEnable()
         {
-            StaticEvents.onCubeHinted += OnCubeHinted;
+            hintInfo.onCubeInfoHinted += OnCubeHinted;
         }
 
         private void OnDisable()
         {
-            StaticEvents.onCubeHinted -= OnCubeHinted;
+            hintInfo.onCubeInfoHinted -= OnCubeHinted;
         }
         #endregion
 
